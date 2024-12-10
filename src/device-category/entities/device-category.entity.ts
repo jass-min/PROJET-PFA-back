@@ -10,6 +10,9 @@ export class DeviceCategory extends EntityHelper {
   @Column()
   categoryName: string;
 
-  @OneToMany(() => Device, device => device.deviceCategory,{eager:true,nullable:true})
+  @OneToMany(() => Device, (device) => device.deviceCategory, {
+    eager: true,
+    nullable: true,
+  })
   devices: Device[];
 }
