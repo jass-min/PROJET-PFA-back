@@ -1,0 +1,5 @@
+// docker exec -it carbon-postgres bash
+
+//  psql -U admin -d db
+
+// copy init.sql content and paste in the terminal

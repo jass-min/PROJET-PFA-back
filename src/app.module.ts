@@ -15,14 +15,15 @@ import { DeviceCategory } from './device-category/entities/device-category.entit
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: process.env.DATABASE_HOST,  // Should be 'carbon-postgres' as per your updated .env
+      host: process.env.DATABASE_HOST, // Should be 'carbon-postgres' as per your updated .env
       port: parseInt(process.env.DATABASE_PORT, 10),
-      username: 'root',
-      password: 'secret',
-      database: 'carbon-db',
+      username: 'admin',
+      password: 'admin',
+      database: 'db',
       autoLoadEntities: true,
-      entities: [Device,Address,Measure,DeviceCategory],
-      synchronize: process.env.DATABASE_SYNCHRONIZE === 'true', // Sync based on .env
+      entities: [Device, Address, Measure, DeviceCategory],
+      migrations: [__dirname + '/migrations/*{.ts,.js}'],
+      synchronize: true, // Sync based on .env
     }),
     AddressModule,
     DeviceCategoryModule,
