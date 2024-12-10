@@ -1,0 +1,32 @@
+version: '3'
+services:
+  postgres:
+    image: postgis/postgis:16-3.4-alpine
+    container_name: carbon-postgres
+    ports:
+      - ${DATABASE_PORT}:5432
+    volumes:
+      - carbon-db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: ${DATABASE_USERNAME}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_NAME}
+    networks:
+      - my-network
+
+  adminer:
+    image: adminer
+    container_name: carbon-adminer
+    restart: always
+    ports:
+      - 8081:8080
+    networks:
+      - my-network
+
+volumes:
+  carbon-db:
+
+
+networks:
+  my-network:
+    driver: bridge
